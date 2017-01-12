@@ -58,18 +58,18 @@ def make_text(chains):
     random_text = ""
     key = choice(chains.keys())
     random_text = random_text + key[0] + " " + key[1]
-    len(random_text) <= 140:
+    
     while key in chains:
         value = choice(chains[key])
         random_text = random_text + " " + value
         key = key[1], value
         
-    # twitter_text = " "
+    twitter_text = random_text[:140]
     # for text in twitter_text:
     #     if 
     #         twitter_text = twitter_text + random_text
 
-    print random_text
+    print twitter_text
 
     # return random_text   
 
