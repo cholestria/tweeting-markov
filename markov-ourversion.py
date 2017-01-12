@@ -1,3 +1,5 @@
+import twitter
+import os
 import sys
 from random import choice
 
@@ -65,13 +67,38 @@ def make_text(chains):
         key = key[1], value
         
     twitter_text = random_text[:140]
-    # for text in twitter_text:
-    #     if 
-    #         twitter_text = twitter_text + random_text
-
-    print twitter_text
+ 
+    return twitter_text
 
     # return random_text   
+def tweet_function(chains):
+    """takes chains as input and asks if we want to tweet"""
+
+    api = twitter.Api(
+        consumer_key=os.environ['TWITTER_CONSUMER_KEY'],
+        consumer_secret=os.environ['TWITTER_CONSUMER_SECRET'],
+        access_token_key=os.environ['TWITTER_ACCESS_TOKEN_KEY'],
+        access_token_secret=os.environ['TWITTER_ACCESS_TOKEN_SECRET'])
+
+    # print api.VerifyCredentials()
+
+    
+
+    user_input = raw_input("Do you want to tweet? ")
+
+    # while True:
+
+    if user_input == "Y":
+        status = api.PostUpdate(make_text(chains))
+        print status.text
+
+        # elif user_input == "q":
+        #     break
+
+        # else:         
+        #     print "I didn't understand"
+        #     continue
+
 
     
 
@@ -87,3 +114,4 @@ chains = make_chains(input_text)
 other_random_text = make_text(chains)
 
 # print other_random_text
+tweet_status = tweet_function(chains)
